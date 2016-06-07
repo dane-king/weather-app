@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="weather.app" >
+  <head>
+    <meta charset="UTF-8">
+    <title>Weather Application</title>
+  </head>
+  <body >
+    <container ng-controller="WeatherController as weatherCtrl">
+      <h2>Welcome</h2>
+      <div id="location">{{weatherCtrl.getLocation()}}</div>
+      <div id="temp">{{weatherCtrl.getTemperature()}}</div>
+      <label for="zip"></label>
+      <input type="text" id="zip" ng-model="weatherCtrl.zip" placeholder="Enter Zip Code"></input>
+      <button ng-click="weatherCtrl.getWeather()" type="button" name="getWeather" id="getWeather">Get Weather</button>
+    </container>
+    <script src="vendor/angular/angular.js" charset="utf-8"></script>
+    <script src="app/weather.module.js" charset="utf-8"></script>
+    <script src="app/weather.js" charset="utf-8"></script>
+    <script src="app/weather.service.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "weather",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "karma start",
+    "e2e-test": "(webdriver-manager start &) && (node_modules/http-server/bin/http-server . &) && sleep 2   && protractor test/e2e/protractor-conf.js"
+  },
+  "author": "Dane King",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-jasmine": "^1.0.2"
+  }
+}

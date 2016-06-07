@@ -1,0 +1,39 @@
+{
+  coord: {
+    lon: -82.81,
+    lat: 39.95
+  },
+  weather: [{
+    id: 803,
+    main: "Clouds",
+    description: "broken clouds",
+    icon: "04d"
+  }],
+  base: "cmc stations",
+  main: {
+    temp: 56.83,
+    pressure: 1005.12,
+    humidity: 77,
+    temp_min: 56.83,
+    temp_max: 56.83,
+    sea_level: 1036.69,
+    grnd_level: 1005.12
+  },
+  wind: {
+    speed: 4.41,
+    deg: 84.0011
+  },
+  clouds: {
+    all: 76
+  },
+  dt: 1463505167,
+  sys: {
+    message: 0.0056,
+    country: "US",
+    sunrise: 1463479998,
+    sunset: 1463532156
+  },
+  id: 4522411,
+  name: "Reynoldsburg",
+  cod: 200
+}

@@ -1,0 +1,2 @@
+//weather by zip
+http://api.openweathermap.org/data/2.5/weather?zip=43068,us&APPID=e3b993fb083535ce1b228a3370cd22a8&units=Imperial
