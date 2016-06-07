@@ -1,0 +1,19 @@
+{
+  "name": "weather",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Dane King"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/dane-king/weather-app",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ]
+}
