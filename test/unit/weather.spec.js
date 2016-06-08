@@ -17,16 +17,14 @@
       scope = $rootScope.$new();
       weatherService = _WeatherService_;
 
-      expectedResponse={data:{main: {temp: 56.83},
-                              id: 4522411,
-                              name: "Test City",
-                              cod: 200
-                            }
-                          };
 
 
       spyOn(weatherService, 'getWeather').and.returnValue({
-        then: function(response){ctrl.weather=expectedResponse.data;}
+        then: function(){
+          ctrl.forecast.icon='abc.png';
+          ctrl.forecast.temperature=56.83;
+          ctrl.forecast.city='Test City';
+        }
       });
       ctrl = $controller('WeatherController', {
         $scope: scope,
@@ -40,12 +38,10 @@
     }));
     describe("Initialization", function() {
       it("should default to a temperature of 0", function() {
-        expect(
-          ctrl.getTemperature()).toEqual(0);
+        expect(ctrl.forecast.temperature).toEqual(0);
       });
-      it("should default to a zip of 43068", function() {
-        expect(
-          ctrl.zip).toEqual('43068');
+      it("should default to a zip of blank", function() {
+        expect(ctrl.zip).toEqual('');
       });
     });
 
@@ -54,17 +50,22 @@
         ctrl.zip = "11111";
         ctrl.getWeather();
       });
+
       it("should call getWeather with zip", function() {
         expect(weatherService.getWeather).toHaveBeenCalledWith('11111');
       });
+
       it("should set weather variable with response data", function() {
-        expect(ctrl.weather).toEqual(expectedResponse.data);
+        expect(ctrl.forecast).toEqual({temperature:56.83,city:'Test City',description:'',icon:'abc.png'});
       });
       it("should be able to get temperature", function () {
-        expect(ctrl.getTemperature()).toEqual(56.83);
+        expect(ctrl.forecast.temperature).toEqual(56.83);
       });
       it("should be get city", function () {
-        expect(ctrl.getLocation()).toEqual('Test City');
+        expect(ctrl.forecast.city).toEqual('Test City');
+      });
+      it("icon", function () {
+        expect(ctrl.forecast.icon).toEqual('abc.png');
       });
     });
   });

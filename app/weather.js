@@ -1,25 +1,23 @@
 (function() {
-  var weatherController=function(WeatherService){
+  var weatherController=function(WeatherService,$timeout){
       var vm=this;
-      vm.weather={};
-
-      vm.getTemperature=function(){
-        console.log(vm.weather);
-        return vm.weather.main?vm.weather.main.temp:0;
+      vm.forecast={
+        temperature:0,
+        city:'',
+        description:'',
+        icon:''
       };
 
-      vm.getLocation=function(){
-        return vm.weather.name;
-      };
-      
+
       //default is reynoldsburg
-      vm.zip="43068";
+      vm.zip="";
+
 
       vm.getWeather=function(){
-          WeatherService.getWeather(vm.zip).then(
-            function(response){
-                vm.weather=response.data;
-            });
+          WeatherService.getWeather(vm.zip).then(function(forecast){
+            console.log('forecast is ', forecast);
+            vm.forecast=forecast;
+          });
       };
   };
   angular.module('weather.app')

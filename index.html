@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="weather.app" >
+<html lang="en" ng-app="weather.app">
   <head>
     <meta charset="UTF-8">
     <title>Weather Application</title>
@@ -7,11 +7,22 @@
   <body >
     <container ng-controller="WeatherController as weatherCtrl">
       <h2>Welcome</h2>
-      <div id="location">{{weatherCtrl.getLocation()}}</div>
-      <div id="temp">{{weatherCtrl.getTemperature()}}</div>
-      <label for="zip"></label>
-      <input type="text" id="zip" ng-model="weatherCtrl.zip" placeholder="Enter Zip Code"></input>
-      <button ng-click="weatherCtrl.getWeather()" type="button" name="getWeather" id="getWeather">Get Weather</button>
+      <div class="forecast" ng-show="weatherCtrl.forecast.icon" >
+        <div id="location">
+          <span>{{weatherCtrl.forecast.city}}</span>
+        </div>
+        <div id="weather">
+          <span>
+            <img id="icon" src="http://openweathermap.org/img/w/{{weatherCtrl.forecast.icon}}" alt="{{weatherCtrl.forecast.description}}"/>
+          </span>
+          <span id="temp">{{weatherCtrl.forecast.temperature}}</span>
+        </div>
+      </div>
+      <div class="enter_zip">
+        <label for="zip"></label>
+        <input type="text" id="zip" ng-model="weatherCtrl.zip" placeholder="Enter Zip Code"></input>
+        <button ng-click="weatherCtrl.getWeather()" type="button" name="getWeather" id="getWeather">Get Weather</button>
+      </div>
     </container>
     <script src="vendor/angular/angular.js" charset="utf-8"></script>
     <script src="app/weather.module.js" charset="utf-8"></script>
