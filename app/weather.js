@@ -13,10 +13,11 @@
       vm.zip="";
 
 
+
       vm.getWeather=function(){
           WeatherService.getWeather(vm.zip).then(function(forecast){
-            console.log('forecast is ', forecast);
             vm.forecast=forecast;
+            console.log('forecast is ', forecast);
           });
       };
   };

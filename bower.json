@@ -15,5 +15,9 @@
     "vendor",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-mocks": "^1.5.6"
+  }
 }

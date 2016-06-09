@@ -46,7 +46,7 @@
         var callbackFn=successPromise.calls.mostRecent().args[0];
 
 
-        expect(callbackFn(responseData)).toEqual({temperature:56.78,city:'Test City', icon:'04d.png'});
+        expect(callbackFn(responseData)).toEqual({temperature:57,city:'Test City', icon:'04d.png'});
       });
     });
 
