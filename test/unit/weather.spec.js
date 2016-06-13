@@ -9,15 +9,23 @@
       module('weather.app');
     });
 
-    var ctrl, scope, weatherService, expectedResponse;
+    var ctrl, scope, weatherService,locationService, expectedResponse;
 
 
 
-    beforeEach(inject(function($controller, $rootScope, _WeatherService_) {
+    beforeEach(inject(function($controller, $rootScope, _WeatherService_,_LocationService_) {
       scope = $rootScope.$new();
       weatherService = _WeatherService_;
+      locationService = _LocationService_;
 
-
+      spyOn(locationService,'getLocation').and.returnValue({
+         then:function(){
+             ctrl.location={};
+             ctrl.location.country="US";
+             ctrl.location.state="OH";
+             ctrl.location.city="Reynoldsburg";
+         }
+      });
 
       spyOn(weatherService, 'getWeather').and.returnValue({
         then: function(){
@@ -26,9 +34,11 @@
           ctrl.forecast.city='Test City';
         }
       });
+
       ctrl = $controller('WeatherController', {
         $scope: scope,
-        WeatherService: _WeatherService_
+        WeatherService: _WeatherService_,
+        LocationService:_LocationService_
       });
 
       ctrl = $controller('WeatherController as weatherCtrl', {
@@ -44,7 +54,18 @@
         expect(ctrl.zip).toEqual('');
       });
     });
-
+    describe("Get Location", function () {
+        beforeEach(function() {
+          ctrl.zip = "11111";
+          ctrl.getLocation();
+        });
+        it("should call getLocation with zip", function() {
+          expect(locationService.getLocation).toHaveBeenCalledWith('11111');
+        });
+        it("should set location variable with response data", function() {
+          expect(ctrl.location).toEqual({ country: 'US', state: 'OH', city: 'Reynoldsburg' });
+        });
+    });
     describe("Get Weather", function() {
       beforeEach(function() {
         ctrl.zip = "11111";

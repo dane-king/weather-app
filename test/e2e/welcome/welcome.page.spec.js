@@ -22,7 +22,7 @@ describe('Weather Station home page', function() {
       });
 
       it("should show location", function() {
-        expect(page.location.getText()).toEqual('Reynoldsburg');
+        expect(page.location.getText()).toEqual('Reynoldsburg, OH');
       });
       it("should show icon", function() {
         expect(page.icon.getAttribute('src')).toMatch(image_url_regex);

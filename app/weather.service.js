@@ -6,6 +6,25 @@
     this.currentWeatherUrl="//api.openweathermap.org/data/2.5/weather?zip={zip},us&APPID=e3b993fb083535ce1b228a3370cd22a8&units=Imperial";
   };
 
+  var parseWeatherData = function parseWeatherData(response){
+    var forecast={};
+    forecast.temperature=Math.round(response.data.main.temp);
+    forecast.icon=response.data.weather[0].icon + '.png';
+    return forecast;
+};
+
+
+  weatherService.prototype.getWeather=function(zip){
+    return this.http.get(this.currentWeatherUrl.replace('{zip}',zip))
+        .then(parseWeatherData);
+  };
+
+  angular.module('weather.app')
+  .service('WeatherService',weatherService);
+
+})();
+
+/**
   var addLocation=function addLocation(forecast) {
           var deferred = this.q.defer();
           if(navigator.geolocation){
@@ -22,21 +41,4 @@
           }
           return deferred.promise;
     };
-
-  var parseWeatherData = function parseWeatherData(response){
-    var forecast={};
-    forecast.temperature=Math.round(response.data.main.temp);
-    forecast.icon=response.data.weather[0].icon + '.png';
-    forecast.city=response.data.name;
-    return forecast;
-    };
-
-
-  weatherService.prototype.getWeather=function(zip){
-    return this.http.get(this.currentWeatherUrl.replace('{zip}',zip)).then(parseWeatherData).then(addLocation.bind(this));
-  };
-
-  angular.module('weather.app')
-  .service('WeatherService',weatherService);
-
-})();
+**/

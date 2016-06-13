@@ -20,8 +20,7 @@
             }],
             main: {
               temp: 56.78
-            },
-            name: 'Test City'
+            }
           }
         };
 
@@ -30,10 +29,10 @@
         $rootScope = $injector.get('$rootScope');
         service = $injector.get('WeatherService');
         http = $injector.get('$http');
-        successPromise = jasmine.createSpy('spy');
+
+        successPromise = jasmine.createSpy('spy',angular.noop);
         spyOn(http, 'get').and.returnValue({then: successPromise});
       }));
-
 
       it("should call http service when getWeather is called", function() {
         var weather = service.getWeather("11111");
@@ -44,10 +43,9 @@
       it("should parse response data to forecast", function() {
         var weather = service.getWeather("11111");
         var callbackFn=successPromise.calls.mostRecent().args[0];
-
-
-        expect(callbackFn(responseData)).toEqual({temperature:57,city:'Test City', icon:'04d.png'});
+        expect(callbackFn(responseData)).toEqual({temperature:57,icon:'04d.png'});
       });
+
     });
 
 })();
