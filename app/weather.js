@@ -20,8 +20,8 @@
       };
 
       vm.getWeather=function(){
-          vm.forecast="";
-          vm.location="";
+          vm.forecast={};
+          vm.location={};
           WeatherService.getWeather(vm.zip).then(function(forecast){
             vm.forecast=forecast;
             vm.getLocation();

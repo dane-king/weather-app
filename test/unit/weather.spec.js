@@ -77,7 +77,7 @@
       });
 
       it("should set weather variable with response data", function() {
-        expect(ctrl.forecast).toEqual({temperature:56.83,city:'Test City',description:'',icon:'abc.png'});
+        expect(ctrl.forecast).toEqual({temperature:56.83,city:'Test City',icon:'abc.png'});
       });
       it("should be able to get temperature", function () {
         expect(ctrl.forecast.temperature).toEqual(56.83);
