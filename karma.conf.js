@@ -15,6 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'node_modules/html2json/lib/**/*.js',
+      'node_modules/html2json/src/*.js',
       'vendor/angular/angular.js',
       'vendor/angular-mocks/angular-mocks.js',
       'app/weather.module.js',

@@ -21,6 +21,7 @@
           },
           equalsHtml:function(util, customEqualityTesters) {
                   function trimHtml(html){
+                      if(typeof html!=="string") throw Error('Can only trim html strings');
                       var removeLineFeeds=/(\r\n|\n|\r)/g,
                       removeWhiteSpaceBetweenTags=/\>([\s]+)\</g;
                       return html.replace(removeWhiteSpaceBetweenTags,"><").replace(removeLineFeeds,"");

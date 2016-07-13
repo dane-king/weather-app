@@ -41,7 +41,20 @@ describe("Directive", function () {
       it("should have the correct click event", function () {
         expect(compiledElement.html()).toHaveClickEvent('weatherCtrl.getWeather()');
       });
+
+      it("should be able to convert to json and compare", function () {
+           var removeLineFeeds=/(\r\n|\n|\r)/g,
+          actual_html=html2json(trimHtml(compiledElement.html())),
+          expect_html=html2json(expected_zip_html);
+          expect(actual_html).toEqual(expect_html);
+      });
+
     });
 
-
+    function trimHtml(html){
+        if(typeof html!=="string") throw Error('Can only trim html strings');
+        var removeLineFeeds=/(\r\n|\n|\r)/g,
+        removeWhiteSpaceBetweenTags=/\>([\s]+)\</g;
+        return html.replace(removeWhiteSpaceBetweenTags,"><").replace(removeLineFeeds,"");
+    }
 });
