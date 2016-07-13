@@ -5,7 +5,6 @@
   describe("WeatherController", function() {
 
     beforeEach(function() {
-      // always load nova module
       module('weather.app');
     });
 

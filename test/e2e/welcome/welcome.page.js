@@ -9,7 +9,7 @@ var Welcome = function() {
   this.icon = element(by.id('icon'));
 
   this.get = function() {
-    browser.get('http://localhost:8080');
+    browser.get('http://localhost:8000');
   };
 
   this.getWelcomeMsg = function() {

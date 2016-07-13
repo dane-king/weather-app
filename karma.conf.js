@@ -18,27 +18,43 @@ module.exports = function(config) {
       'vendor/angular/angular.js',
       'vendor/angular-mocks/angular-mocks.js',
       'app/weather.module.js',
+      'app/tmpl/**/*.html',
       'app/**/*.js',
+      'test/**/helpers/*.js',
       'test/**/unit/*.spec.js'
-    ],
+  ],
 
 
     // list of files to exclude
     exclude: [
     ],
 
+    // karma.conf.js
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        "app/tmpl/**/*.html": ["ng-html2js"]
     },
 
+    ngHtml2JsPreprocessor: {
+        // If your build process changes the path to your templates,
+        // use stripPrefix and prependPrefix to adjust it.
+        //stripPrefix: "app/tmpl",
+        //prependPrefix: "app",
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+        // the name of the Angular module to create
+        moduleName: "weather.templates"
+    },
 
+    reporters: ['jasmine-diff','progress'],
+
+      jasmineDiffReporter: {
+          matchers: {
+            equalsHtml: {
+              pattern: /Expected HTML is ([\S\s]*?) not equal to ([\S\s]*?)\./, //must match the result message of the matcher
+              reverse: true
+            }
+          }
+      },
 
     // web server port
     port: 9876,
@@ -69,5 +85,5 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
-}
+});
+};
